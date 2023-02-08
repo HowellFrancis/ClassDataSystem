@@ -1,43 +1,57 @@
 //
 //  student.cpp
-//  Class Data System
-//  Created by Hywel Francis on 1/14/23.
+//  ClassDataSystem2
 //
-#include <iostream>
-#include <string>
-//#include <stdio.h>
-#include "student.h"
+//  Created by XXXG-01W Wing Gundam on 1/22/23.
+//
+
+#include "student.hpp"
+#include "degree.hpp"
 using namespace std;
 
-//establishes constructor for class Student objects
-Student::Student(){
+//establish default constructor, populate
+Student::Student(string studentID, string firstName, string lastName, string emailAddress, int studentAge, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeType) {
+    
+    
+    this->studentID = studentID;
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->emailAddress = emailAddress;
+    this->studentAge = studentAge;
+    this->courseDays[0] = daysInCourse1;
+    this->courseDays[1] = daysInCourse2;
+    this->courseDays[2] = daysInCourse3;
+    this->degreeProgram = degreeType;
 }
 
-//D.2.a. accessor-getters
-string Student::getStudentID() const {
+//establishes constructor
+Student::~Student(){}
+
+//accessors
+string Student::getID() {
     return this->studentID;
 }
-string Student::getFirstName() const {
+string Student::getFirstName() {
     return this->firstName;
 }
-string Student::getLastName() const {
+string Student::getLastName(){
     return this->lastName;
 }
-string Student::getEmail() const {
-    return this->email;
+string Student::getEmailAddress(){
+    return this->emailAddress;
 }
-int Student::getAge() const {
-    return this->age;
+int Student::getStudentAge(){
+    return this->studentAge;
 }
-int *Student::getDays() {
-    return this->days;
+int* Student::getCourseDays(){
+    return this->courseDays;
 }
-DegreeType Student::getDegreeType() {
-    return this->degreeType;
+DegreeProgram Student::getDegreeProgram(){
+    return this->degreeProgram;
 }
 
-//D.2.b. mutator-setters
-void Student::setStudentID(string studentID) {
+//setters
+void Student::setID(string studentID) {
     this->studentID = studentID;
 }
 void Student::setFirstName(string firstName) {
@@ -46,34 +60,31 @@ void Student::setFirstName(string firstName) {
 void Student::setLastName(string lastName) {
     this->lastName = lastName;
 }
-void Student::setEmail(string email) {
-    this->email = email;
+void Student::setEmailAddress(string emailAddress) {
+    this->emailAddress = emailAddress;
 }
-void Student::setAge(int age) {
-    this->age = age;
+void Student::setStudentAge(int studentAge) {
+    this->studentAge = studentAge;
 }
-
-void Student::setCourseDayArray(int days[])
-{
-    for (int i = 0; i < daysArray; i++)
-    this->days[i] = days[i];
+void Student::setCourseDays(int courseDays[]) {
+    this->courseDays[0] = courseDays[0];
+    this->courseDays[1] = courseDays[1];
+    this->courseDays[2] = courseDays[2];
 }
-void Student::setDegreeType(DegreeType dp) {this->degreeType = dp;
-
+void Student::setDegreeProgram(DegreeProgram DEGREE) {
+    this->degreeProgram = DEGREE;
 }
-
-//D.2.e. organizes print function
-void Student::printStudentData(){
-    cout << "Student ID - First Name - Last Name - Email Address - Age - Days to Complete Three Courses - Degree Type\n";
+void Student::printHeader() {
+    cout << "Student ID | First Name | Last Name | Email Address | Age | Days to Course Completion | Degree Program\n";
 }
 void Student::print() {
-    cout << this->getStudentID();
+    cout << this->getID();
     cout << this->getFirstName();
     cout << this->getLastName();
-    cout << this->getEmail();
-    cout << this->getAge();
-    cout << this->getDays()[0];
-    cout << this->getDays()[1];
-    cout << this->getDays()[2];
-    cout << degreeTypeString[this->getDegreeType()];
+    cout << this->getEmailAddress();
+    cout << this->getStudentAge();
+    cout << this->getCourseDays() [0];
+    cout << this->getCourseDays() [1];
+    cout << this->getCourseDays() [2];
+    cout << degreeProgramsString[this->getDegreeProgram()];
 }
